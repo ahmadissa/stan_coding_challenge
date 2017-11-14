@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", requestHandler.HandlePut)
+	http.HandleFunc("/", requestHandler.HandlePost)
 	// open port and wait for requests
 	err := http.ListenAndServe(":19090", nil)
 	if err != nil {

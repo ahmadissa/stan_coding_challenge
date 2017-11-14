@@ -7,8 +7,8 @@ import (
 	"github.com/ahmadissa/stan_coding_challenge/dataProcessor"
 )
 
-//HandlePut will handle requests and validate the request and respond accordingly
-func HandlePut(response http.ResponseWriter, req *http.Request) {
+//HandlePost will handle requests and validate the request and respond accordingly
+func HandlePost(response http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 	method := req.Method
 	switch method {
@@ -18,7 +18,7 @@ func HandlePut(response http.ResponseWriter, req *http.Request) {
 
 		response.WriteHeader(status)
 
-		log.Printf("[requestHandler]:HandlePut: sending data:" + string(responseJSON))
+		log.Printf("[requestHandler]:HandlePost: sending data:" + string(responseJSON))
 		response.Write(responseJSON)
 	default:
 		response.WriteHeader(http.StatusMethodNotAllowed)
