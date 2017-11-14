@@ -1,7 +1,6 @@
 package requestHandler
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -15,13 +14,15 @@ func HandlePut(response http.ResponseWriter, req *http.Request) {
 	switch method {
 	case "POST":
 		responseJSON, status := dataProcessor.Process(req.Body)
+		response.Header().Set("Content-Type", "application/json")
+
 		response.WriteHeader(status)
 
-		log.Printf("[requestHandler]:HandlePut: sending data:" + responseJSON)
-		fmt.Fprintf(response, responseJSON)
+		log.Printf("[requestHandler]:HandlePut: sending data:" + string(responseJSON))
+		response.Write(responseJSON)
 	default:
 		response.WriteHeader(http.StatusMethodNotAllowed)
-		fmt.Fprintf(response, "Method Not Allowed")
+		response.Write([]byte("Method Not Allowed"))
 		return
 	}
 

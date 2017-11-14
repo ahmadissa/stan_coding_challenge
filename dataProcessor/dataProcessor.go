@@ -44,15 +44,15 @@ func getResponse(request jsonData.Request, response *jsonData.ResponseOK) error 
 	}
 	return nil
 }
-func getError(errString string) string {
+func getError(errString string) []byte {
 	errResponse := jsonData.ResponseError{}
 	errResponse.Error = "Could not decode request: " + errString
 	responseJSON, _ := json.Marshal(errResponse)
-	return string(responseJSON)
+	return responseJSON
 }
 
 //Process request body, validate request and reply with response string and status code
-func Process(body io.ReadCloser) (string, int) {
+func Process(body io.ReadCloser) ([]byte, int) {
 	jsonBytes, err := ioutil.ReadAll(body)
 
 	if err != nil { // if failed to decode return error
@@ -72,5 +72,5 @@ func Process(body io.ReadCloser) (string, int) {
 		return getError(err.Error()), http.StatusBadRequest
 	}
 	resposeBytes, _ := json.Marshal(response)
-	return string(resposeBytes), http.StatusOK
+	return resposeBytes, http.StatusOK
 }
