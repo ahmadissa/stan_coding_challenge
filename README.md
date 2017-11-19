@@ -8,12 +8,14 @@ https://challengeaccepted.streamco.com.au
 ----------
 
 
-Installation
+Running the code
 -------------
 
-this software has no dependencies, for installation just run the below 
+just run the below 
 ```
-github.com/ahmadissa/stan_coding_challenge
+$ go get -u github.com/ahmadissa/stan_coding_challenge
+$ cd $GOPATH/src/github.com/ahmadissa/stan_coding_challenge
+$ go run main.go
 ```
 ----------
 
